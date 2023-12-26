@@ -1,11 +1,16 @@
-﻿using System;
+﻿using System.Text.Json.Serialization;
+using System.Xml.Serialization;
+
 namespace JsonSerialization
 {
-	public class Department
+    [Serializable]
+    public class Department
 	{
-		public Department()
-		{
-		}
-	}
+        [JsonPropertyName("DepartmentName")]
+        public string DepartmentName { get; set; }
+
+        [JsonPropertyName("Employees")]
+        public List<Employee> Employees { get; set; } = new List<Employee>();
+    }
 }
 

@@ -1,10 +1,9 @@
-﻿using System;
-namespace BinarySerialization
+﻿namespace BinarySerialization
 {
 	public class Department
 	{
-        string DepartmentName
-
+        public string DepartmentName { get; set; }
+        public List<Employee> Employees { get; set; } = new List<Employee>();
     }
 }
 

@@ -1,9 +1,16 @@
-﻿using System;
+﻿
+using System.Xml.Serialization;
+
 namespace XMLSerialization
 {
-	public class Department
+    [Serializable]
+    public class Department
 	{
-		
-	}
+        [XmlAttribute("DepartmentName")]
+        public string DepartmentName { get; set; }
+
+        [XmlElement("Employees")]
+        public List<Employee> Employees { get; set; } = new List<Employee>();
+    }
 }
 

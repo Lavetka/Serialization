@@ -1,8 +1,12 @@
-﻿namespace XMLSerialization
+﻿using System.Xml.Serialization;
+
+namespace XMLSerialization
 {
-	public class Employee
+    [Serializable]
+    public class Employee
 	{
-        string EmpoyeeName;
+        [XmlElement("Name")]
+        public string EmployeeName { get; set; }
     }
 }
 
