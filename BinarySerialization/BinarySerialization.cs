@@ -1,41 +1,26 @@
-﻿using System;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text.Json;
+﻿using System.Runtime.Serialization.Formatters.Binary;
+
 
 namespace BinarySerialization
 {
     public static class BinarySerialization
     {
-        // OBSOLETE
-        /*  public static void Serialize(Department department, string fileName)
-          {
-              BinaryFormatter formatter = new BinaryFormatter();
-              using (FileStream stream = new FileStream(fileName, FileMode.Create))
-              {
-                  formatter.Serialize(stream, department);
-              }
-          }
-
-          public static Department Deserialize(string fileName)
-          {
-              BinaryFormatter formatter = new BinaryFormatter();
-              using (FileStream stream = new FileStream(fileName, FileMode.Open))
-              {
-                  return (Department)formatter.Deserialize(stream);
-              }
-          }
-        */
-
-        public static void Serialize(Department department, string fileName)
+        public static void Serialize<T>(T obj, string fileName)
         {
-            string jsonString = JsonSerializer.Serialize(department);
-            File.WriteAllText(fileName, jsonString);
+            BinaryFormatter formatter = new BinaryFormatter();
+            using (FileStream stream = new FileStream(fileName, FileMode.Create))
+            {
+                formatter.Serialize(stream, obj);
+            }
         }
 
-        public static Department Deserialize(string fileName)
+        public static T Deserialize<T>(string fileName)
         {
-            string jsonString = File.ReadAllText(fileName);
-            return JsonSerializer.Deserialize<Department>(jsonString);
+            BinaryFormatter formatter = new BinaryFormatter();
+            using (FileStream stream = new FileStream(fileName, FileMode.Open))
+            {
+                return (T)formatter.Deserialize(stream);
+            }
         }
     }
 }
